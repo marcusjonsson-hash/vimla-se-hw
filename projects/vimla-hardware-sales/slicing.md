@@ -93,15 +93,15 @@ The project is sliced into **6 drops**, each delivering a **tiny, isolated, test
 
 ### Acceptance Criteria — Drop 2
 
-- [ ] Clicking a phone card on the listing navigates to `/phones/<phone-slug>`
-- [ ] Detail page shows: image gallery (main + thumbnails), model name, colour swatches, storage pills, price box, specs table
-- [ ] Clicking a thumbnail updates the main image
-- [ ] Clicking a colour swatch updates the main image and colour name label
-- [ ] Clicking a storage pill updates the price box within 200 ms
-- [ ] Price box shows: monthly instalment, "i 36 månader", total device cost, subscription starting price
-- [ ] "← Tillbaka till alla telefoner" navigates to `/phones` with filters preserved
-- [ ] Invalid phone slug shows a 404 page with a link back to `/phones`
-- [ ] Page loads within 2 seconds (NFR-102)
+- [x] Clicking a phone card on the listing navigates to `/phones/<phone-slug>`
+- [x] Detail page shows: image gallery (main + thumbnails), model name, colour swatches, storage pills, price box, specs table
+- [x] Clicking a thumbnail updates the main image
+- [x] Clicking a colour swatch updates the main image and colour name label
+- [x] Clicking a storage pill updates the price box within 200 ms
+- [x] Price box shows: monthly instalment, "i 36 månader", total device cost, subscription starting price
+- [x] "← Tillbaka till alla telefoner" navigates to `/phones` with filters preserved
+- [x] Invalid phone slug shows a 404 page with a link back to `/phones`
+- [ ] Page loads within 2 seconds (NFR-102) — *awaiting Lighthouse audit*
 
 ---
 
@@ -134,6 +134,7 @@ The project is sliced into **6 drops**, each delivering a **tiny, isolated, test
 - Fulfilment is **stubbed** — no real logistics call (Drop 4)
 - Billing is **stubbed** — no real invoice update (Drop 4)
 - No existing-subscriber path (Drop 5)
+- No existing-subscriber plan display (FR-304, Drop 5)
 - Confirmation email is not sent (Drop 4)
 - No HTTPS enforcement yet (Drop 6)
 - No PII security review yet (Drop 6)

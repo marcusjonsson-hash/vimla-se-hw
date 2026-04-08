@@ -7,6 +7,20 @@
 import type { Phone, PhoneBrand } from "@/data/phones";
 
 // ---------------------------------------------------------------------------
+// Lookup — US-201, Drop 2
+// ---------------------------------------------------------------------------
+
+/**
+ * Find a phone by its URL slug. Returns undefined if not found.
+ */
+export function findBySlug(
+  allPhones: Phone[],
+  slug: string
+): Phone | undefined {
+  return allPhones.find((phone) => phone.slug === slug);
+}
+
+// ---------------------------------------------------------------------------
 // Filtering — BR-401, FR-107
 // ---------------------------------------------------------------------------
 

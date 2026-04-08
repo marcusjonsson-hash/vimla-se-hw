@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
@@ -13,20 +14,20 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
       <Container className="flex items-center justify-between h-16">
         {/* Logo */}
-        <a href="/" className="text-2xl font-extrabold tracking-tight text-primary">
+        <Link href="/" className="text-2xl font-extrabold tracking-tight text-primary">
           vimla
-        </a>
+        </Link>
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="text-sm font-medium text-dark hover:text-primary transition-colors"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
           <Button variant="primary" href="#">
             Mitt Vimla
@@ -48,14 +49,14 @@ export default function Navbar() {
         <div className="md:hidden border-t border-gray-100 bg-white">
           <Container className="flex flex-col gap-4 py-4">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className="text-base font-medium text-dark hover:text-primary transition-colors"
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
             <Button variant="primary" href="#">
               Mitt Vimla

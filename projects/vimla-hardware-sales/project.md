@@ -52,14 +52,14 @@ A phone webshop on vimla.se where customers can browse the latest iPhones and Sa
 
 ## Artifact Status — Build
 
-> **Active drop:** Drop 1 — Static Catalogue
+> **Active drop:** Drop 2 — Phone Detail & Configuration (complete)
 
 | # | Artifact | Status | Owner |
 |---|----------|--------|-------|
 | 1 | Implementation Status | ✅ Done (Drop 1) | Engineering |
 | 2 | Test Cases | ✅ Done (Drop 1) | Engineering |
 | 3 | UX Deliverables | ⬜ Not Done | UX |
-| 4 | Detailed Technical Design | ✅ Done (Drop 1) | Engineering |
+| 4 | Detailed Technical Design | ✅ Done (Drop 1, Drop 2) | Engineering |
 | 5 | Design Decisions Log | ⬜ Not Done | Engineering |
 | 6 | DoD Checklist Progress | 🟡 In Progress | Product |
 | 7 | Updated Risks | ⬜ Not Done | Product / Engineering |

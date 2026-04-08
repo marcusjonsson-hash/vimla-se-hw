@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import type { Phone, PhoneBrand } from "@/data/phones";
 import { filterByBrand, sortPhones, type SortOption } from "@/lib/catalogue";
 import Container from "@/components/ui/Container";
@@ -10,6 +11,9 @@ import SortDropdown from "@/components/ui/SortDropdown";
 
 type BrandOption = "Alla" | PhoneBrand;
 
+const VALID_BRANDS: BrandOption[] = ["Alla", "iPhone", "Samsung"];
+const VALID_SORTS: SortOption[] = ["popularity", "price-asc", "price-desc"];
+
 interface PhoneListingProps {
   phones: Phone[];
 }
@@ -17,15 +21,51 @@ interface PhoneListingProps {
 /**
  * Client component for the phone listing: filter, sort, and grid.
  *
- * State:
- * - brand: "Alla" | "iPhone" | "Samsung" — default "Alla"
- * - sort: "popularity" | "price-asc" | "price-desc" — default "popularity"
+ * Filter/sort state is synced to URL search params (?brand=…&sort=…)
+ * so that back-button navigation and back-links from the detail page
+ * preserve the visitor's selections.
  *
- * Traces to: US-101, US-102, US-103, FR-104, FR-105, FR-106
+ * Traces to: US-101, US-102, US-103, US-203, FR-104, FR-105, FR-106, FR-207
  */
 export default function PhoneListing({ phones }: PhoneListingProps) {
-  const [brand, setBrand] = useState<BrandOption>("Alla");
-  const [sort, setSort] = useState<SortOption>("popularity");
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  // Read state from URL, falling back to defaults
+  const brandParam = searchParams.get("brand");
+  const sortParam = searchParams.get("sort");
+
+  const brand: BrandOption = VALID_BRANDS.includes(brandParam as BrandOption)
+    ? (brandParam as BrandOption)
+    : "Alla";
+  const sort: SortOption = VALID_SORTS.includes(sortParam as SortOption)
+    ? (sortParam as SortOption)
+    : "popularity";
+
+  // Update URL search params without scroll reset
+  const updateParams = useCallback(
+    (key: string, value: string, defaultValue: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      if (value === defaultValue) {
+        params.delete(key);
+      } else {
+        params.set(key, value);
+      }
+      const qs = params.toString();
+      router.replace(`/phones${qs ? `?${qs}` : ""}`, { scroll: false });
+    },
+    [searchParams, router]
+  );
+
+  const setBrand = useCallback(
+    (b: BrandOption) => updateParams("brand", b, "Alla"),
+    [updateParams]
+  );
+
+  const setSort = useCallback(
+    (s: SortOption) => updateParams("sort", s, "popularity"),
+    [updateParams]
+  );
 
   const filtered = filterByBrand(phones, brand);
   const sorted = sortPhones(filtered, sort);

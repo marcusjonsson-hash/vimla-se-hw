@@ -10,7 +10,7 @@
  * Traces to: FR-101, FR-102, FR-104, FR-107, BR-101, BR-102, BR-401, BR-403
  */
 
-import { calculateInstalment } from "@/lib/pricing";
+import { calculateInstalment, calculateTotalCost } from "@/lib/pricing";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -21,6 +21,7 @@ export interface PhoneVariant {
   storage: string;
   retailPrice: number;
   instalmentPrice: number; // ceil(retailPrice / 36) — BR-101
+  totalCost: number; // instalmentPrice × 36 — BR-103
 }
 
 /** A colour option for a phone model — FR-203 */
@@ -54,10 +55,12 @@ export interface Phone {
 // ---------------------------------------------------------------------------
 
 function variant(storage: string, retailPrice: number): PhoneVariant {
+  const instalmentPrice = calculateInstalment(retailPrice);
   return {
     storage,
     retailPrice,
-    instalmentPrice: calculateInstalment(retailPrice),
+    instalmentPrice,
+    totalCost: calculateTotalCost(instalmentPrice),
   };
 }
 

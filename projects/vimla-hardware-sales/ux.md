@@ -26,7 +26,7 @@
 | **Phone Listing** | Browse all available phones, filter by brand, sort by price | `/phones` |
 | **Phone Detail** | View a single phone — images, specs, colour/storage picker, price breakdown | `/phones/<phone-slug>` |
 | **Configure & Checkout** | Select subscription plan (or confirm existing), review total monthly cost, enter personal details, trigger credit check | `/phones/<phone-slug>/checkout` |
-| **Credit Check Result** | Display credit check outcome (approved / declined) and next steps | `/phones/<phone-slug>/checkout/result` |
+| **Credit Check Result** | Display credit check outcome (approved / declined / error) and next steps | Visual state within `/phones/<phone-slug>/checkout` (not a separate route — rendered by `CreditResultScreen` inside `CheckoutFlow`) |
 | **Order Confirmation** | Order summary, expected delivery, what happens next | `/order/confirmation/<order-id>` |
 
 ---
@@ -38,9 +38,10 @@ flowchart LR
     HP["vimla.se\nHomepage"] -->|"Phones link"| PL["Phone Listing\n/phones"]
     PL -->|"Click phone card"| PD["Phone Detail\n/phones/slug"]
     PD -->|"Choose & Continue"| CO["Configure & Checkout\n/phones/slug/checkout"]
-    CO -->|"Submit"| CR["Credit Check Result\n/…/checkout/result"]
-    CR -->|"Approved"| OC["Order Confirmation\n/order/confirmation/id"]
+    CO -->|"Submit"| CR["Credit Result\n(visual state in checkout)"]
+    CR -->|"Approved → Bekräfta"| OC["Order Confirmation\n/order/confirmation/id"]
     CR -->|"Declined"| PL
+    CR -->|"Error → Retry"| CO
     PD -->|"Back"| PL
     CO -->|"Back"| PD
 ```
@@ -250,7 +251,9 @@ flowchart LR
 
 ---
 
-### Credit Check Result (`/phones/<phone-slug>/checkout/result`)
+### Credit Check Result (visual state within `/phones/<phone-slug>/checkout`)
+
+> **Note:** The credit check result is **not** a separate route. It is rendered as a visual state within the checkout page by the `CreditResultScreen` component inside `CheckoutFlow`. The URL remains `/phones/<phone-slug>/checkout`.
 
 ```
 ┌──────────────────────────────────────────────────────────────────────┐
@@ -285,6 +288,18 @@ flowchart LR
 │  │                                                                │  │
 │  │  [ Tillbaka till telefoner ]                                   │  │
 │  └────────────────────────────────────────────────────────────────┘  │
+│                                                                      │
+│  ERROR / TIMEOUT:                                                    │
+│  ┌────────────────────────────────────────────────────────────────┐  │
+│  │                         ⚠️                                     │  │
+│  │                                                                │  │
+│  │  Något gick fel.                                              │  │
+│  │                                                                │  │
+│  │  Försök igen om en stund. Om problemet kvarstår,              │  │
+│  │  kontakta vår kundtjänst.                                     │  │
+│  │                                                                │  │
+│  │  [ Försök igen ]                                               │  │
+│  └────────────────────────────────────────────────────────────────┘  │
 └──────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -294,7 +309,8 @@ flowchart LR
 |---------|--------|
 | **Approved state** | Green checkmark icon, confirmation text, order summary, estimated delivery, and a final "Bekräfta beställning →" CTA |
 | **Declined state** | Red X icon, empathetic decline message, no details about why (credit provider policy), link to customer service, and a "Tillbaka till telefoner" link |
-| **Loading state** | While credit check is in progress: spinner + "Vi kontrollerar dina uppgifter…" message. Typical wait: 5–15 seconds |
+| **Error/timeout state** | Warning icon (⚠️), "Något gick fel" heading, suggestion to try again, customer service fallback link, and a "Försök igen" button that re-submits the credit check with the same data (no need to re-enter details). Personal details remain in form state |
+| **Loading state** | While credit check is in progress: spinner + "Vi kontrollerar dina uppgifter…" message. Typical wait: 2 seconds (stubbed) / 5–15 seconds (production) |
 
 ---
 
@@ -370,7 +386,8 @@ flowchart LR
 | **Form field** | Error | Red border, error message below field |
 | **Form field** | Valid | Green checkmark icon inside field |
 | **Order summary** | Default (desktop) | Sticky sidebar, always visible during scroll |
-| **Order summary** | Default (mobile) | Sticky bottom bar, collapsed; tap to expand full summary |
+| **Order summary** | Default (mobile) — collapsed | Sticky bottom bar showing single line: "Totalt: XXX kr/mån ▲" with expand chevron. Height: 48px |
+| **Order summary** | Default (mobile) — expanded | Full order summary slides up from bottom (200ms ease-out). Background overlay dims page content. Tap chevron (▼) or overlay to collapse |
 | **Progress bar step** | Completed | Filled circle + label, clickable |
 | **Progress bar step** | Active | Filled circle + bold label, not clickable |
 | **Progress bar step** | Upcoming | Outlined circle + muted label, not clickable |

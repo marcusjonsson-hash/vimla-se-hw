@@ -344,6 +344,8 @@ User stories trace back to [Requirements](requirements.md) and forward to [Test 
 
 - [ ] **Given** the customer refreshes the confirmation page, **when** the page reloads, **then** the same order details are displayed (no duplicate order placed)
 
+> **Drop 3 caveat:** Order storage is in-memory only (`globalThis` singleton). A server restart clears all stored orders, meaning a confirmation page refresh after restart will 404. Full database-backed persistence replaces this in Drop 4.
+
 ---
 
 ### US-403: Handle declined credit check

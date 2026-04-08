@@ -9,26 +9,26 @@ export interface FooterLinkGroup {
 }
 
 export const navLinks: NavLink[] = [
-  { label: "Mobil", href: "#planer" },
+  { label: "Mobil", href: "/#planer" },
   { label: "Telefoner", href: "/phones" },
-  { label: "Om Vimla", href: "#om-vimla" },
-  { label: "Vanliga frågor", href: "#faq" },
+  { label: "Om Vimla", href: "/#om-vimla" },
+  { label: "Vanliga frågor", href: "/#faq" },
 ];
 
 export const footerLinkGroups: FooterLinkGroup[] = [
   {
     title: "Abonnemang",
     links: [
-      { label: "Mobilabonnemang", href: "#planer" },
-      { label: "Jämför abonnemang", href: "#planer" },
+      { label: "Mobilabonnemang", href: "/#planer" },
+      { label: "Jämför abonnemang", href: "/#planer" },
     ],
   },
   {
     title: "Om Vimla",
     links: [
-      { label: "Vilka vi är", href: "#om-vimla" },
-      { label: "Vanliga frågor", href: "#faq" },
-      { label: "Kontakta oss", href: "#kontakt" },
+      { label: "Vilka vi är", href: "/#om-vimla" },
+      { label: "Vanliga frågor", href: "/#faq" },
+      { label: "Kontakta oss", href: "/#kontakt" },
     ],
   },
   {

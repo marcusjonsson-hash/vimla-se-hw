@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import Navbar from "@/components/sections/Navbar";
 import PhoneHero from "@/components/sections/PhoneHero";
@@ -29,7 +30,9 @@ export default function PhonesPage() {
       <Navbar />
       <main className="flex-1">
         <PhoneHero lowestPrice={lowestPrice} />
-        <PhoneListing phones={activePhones} />
+        <Suspense>
+          <PhoneListing phones={activePhones} />
+        </Suspense>
       </main>
       <Footer />
     </>
