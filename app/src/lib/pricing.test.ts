@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import {
   INSTALMENT_MONTHS,
+  calculateCombinedMonthly,
   calculateInstalment,
   calculateTotalCost,
 } from "./pricing";
@@ -64,5 +65,15 @@ describe("calculateTotalCost", () => {
 describe("INSTALMENT_MONTHS", () => {
   it("is fixed at 36 for Phase 1 (BR-301)", () => {
     expect(INSTALMENT_MONTHS).toBe(36);
+  });
+});
+
+describe("calculateCombinedMonthly", () => {
+  it("adds instalment and subscription (BR-104)", () => {
+    expect(calculateCombinedMonthly(399, 149)).toBe(548);
+  });
+
+  it("supports zero subscription", () => {
+    expect(calculateCombinedMonthly(399, 0)).toBe(399);
   });
 });

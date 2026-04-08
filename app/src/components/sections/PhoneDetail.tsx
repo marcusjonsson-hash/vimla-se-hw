@@ -45,22 +45,28 @@ export default function PhoneDetail({
     [phone.variants, activeStorage]
   );
 
-  // Build gallery images from current colour — FR-202
-  // In Drop 1 data all colours share the same placeholder, but the structure is ready
+  // Build gallery images from current colour — FR-202, F-06 fix
+  // Uses colour.gallery when available (3–5 angles), falling back to primary image
   const galleryImages = useMemo(() => {
     if (!currentColour) return [];
-    // Use the colour-specific image as the main, plus the model default as a second angle
+
+    const angleLabels = ["framsida", "baksida", "sida", "vinkel", "detalj"];
+
+    if (currentColour.gallery && currentColour.gallery.length > 0) {
+      return currentColour.gallery.map((url, i) => ({
+        url,
+        alt: `${phone.name} i ${currentColour.name}, ${angleLabels[i] ?? `bild ${i + 1}`}`,
+      }));
+    }
+
+    // Fallback: single colour image + model default
     return [
       {
         url: currentColour.imageUrl,
         alt: `${phone.name} i ${currentColour.name}, framsida`,
       },
-      {
-        url: phone.imageUrl,
-        alt: `${phone.name} i ${currentColour.name}, baksida`,
-      },
     ];
-  }, [phone.name, phone.imageUrl, currentColour]);
+  }, [phone.name, currentColour]);
 
   // CTA URL preserves colour + storage selection — FR-208
   const checkoutUrl = `/phones/${phone.slug}/checkout?colour=${encodeURIComponent(activeColour)}&storage=${encodeURIComponent(activeStorage)}`;
@@ -112,8 +118,14 @@ export default function PhoneDetail({
           />
 
           {/* CTA — FR-208 (links to checkout, 404 until Drop 3) */}
-          <Button variant="primary" href={checkoutUrl} className="w-full md:w-auto">
-            Välj denna telefon
+          <Button
+            variant="primary"
+            href={checkoutUrl}
+            className="w-full md:w-auto"
+            data-analytics-section="phone-detail"
+            data-analytics-action="start-checkout"
+          >
+            Välj denna telefon →
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </div>

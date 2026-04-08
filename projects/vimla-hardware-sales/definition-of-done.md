@@ -8,6 +8,8 @@
 
 ## Project-Level Definition of Done
 
+**Progress update (2026-04-08):** Drop 3 (Checkout Flow, stubbed) is implemented and verified with passing unit tests. Project-level DoD remains open pending Drops 4–6 integrations, audits, and launch-readiness gates.
+
 All of the following must be true before this project can be considered **Done** (moved to Post-launch):
 
 | # | Criterion | Verified | Notes |

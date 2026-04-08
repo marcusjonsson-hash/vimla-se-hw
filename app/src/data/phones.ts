@@ -24,11 +24,14 @@ export interface PhoneVariant {
   totalCost: number; // instalmentPrice × 36 — BR-103
 }
 
-/** A colour option for a phone model — FR-203 */
+/** A colour option for a phone model — FR-203, FR-202 */
 export interface PhoneColour {
   name: string;
   hex: string;
+  /** Primary image — used on listing card + gallery hero */
   imageUrl: string;
+  /** Additional angles for the image gallery (front, back, side, etc.) — FR-202 */
+  gallery?: string[];
 }
 
 /** Catalogue status — BR-401, FR-107, FR-602 */
@@ -76,12 +79,44 @@ export const phones: Phone[] = [
     brand: "iPhone",
     status: "active",
     sortOrder: 1,
-    imageUrl: "/phones/iphone-17-pro.svg",
+    imageUrl: "/phones/iphone-17-pro/titan-natur-front.svg",
     colours: [
-      { name: "Titan Natur", hex: "#8B7355", imageUrl: "/phones/iphone-17-pro.svg" },
-      { name: "Titan Blå", hex: "#4A6FA5", imageUrl: "/phones/iphone-17-pro.svg" },
-      { name: "Titan Svart", hex: "#2D2D2D", imageUrl: "/phones/iphone-17-pro.svg" },
-      { name: "Titan Vit", hex: "#F5F5F0", imageUrl: "/phones/iphone-17-pro.svg" },
+      {
+        name: "Titan Natur", hex: "#8B7355",
+        imageUrl: "/phones/iphone-17-pro/titan-natur-front.svg",
+        gallery: [
+          "/phones/iphone-17-pro/titan-natur-front.svg",
+          "/phones/iphone-17-pro/titan-natur-back.svg",
+          "/phones/iphone-17-pro/titan-natur-side.svg",
+        ],
+      },
+      {
+        name: "Titan Blå", hex: "#4A6FA5",
+        imageUrl: "/phones/iphone-17-pro/titan-bla-front.svg",
+        gallery: [
+          "/phones/iphone-17-pro/titan-bla-front.svg",
+          "/phones/iphone-17-pro/titan-bla-back.svg",
+          "/phones/iphone-17-pro/titan-bla-side.svg",
+        ],
+      },
+      {
+        name: "Titan Svart", hex: "#2D2D2D",
+        imageUrl: "/phones/iphone-17-pro/titan-svart-front.svg",
+        gallery: [
+          "/phones/iphone-17-pro/titan-svart-front.svg",
+          "/phones/iphone-17-pro/titan-svart-back.svg",
+          "/phones/iphone-17-pro/titan-svart-side.svg",
+        ],
+      },
+      {
+        name: "Titan Vit", hex: "#F5F5F0",
+        imageUrl: "/phones/iphone-17-pro/titan-vit-front.svg",
+        gallery: [
+          "/phones/iphone-17-pro/titan-vit-front.svg",
+          "/phones/iphone-17-pro/titan-vit-back.svg",
+          "/phones/iphone-17-pro/titan-vit-side.svg",
+        ],
+      },
     ],
     variants: [
       variant("128 GB", 14388),
@@ -103,12 +138,44 @@ export const phones: Phone[] = [
     brand: "iPhone",
     status: "active",
     sortOrder: 2,
-    imageUrl: "/phones/iphone-17-pro-max.svg",
+    imageUrl: "/phones/iphone-17-pro-max/titan-natur-front.svg",
     colours: [
-      { name: "Titan Natur", hex: "#8B7355", imageUrl: "/phones/iphone-17-pro-max.svg" },
-      { name: "Titan Blå", hex: "#4A6FA5", imageUrl: "/phones/iphone-17-pro-max.svg" },
-      { name: "Titan Svart", hex: "#2D2D2D", imageUrl: "/phones/iphone-17-pro-max.svg" },
-      { name: "Titan Vit", hex: "#F5F5F0", imageUrl: "/phones/iphone-17-pro-max.svg" },
+      {
+        name: "Titan Natur", hex: "#8B7355",
+        imageUrl: "/phones/iphone-17-pro-max/titan-natur-front.svg",
+        gallery: [
+          "/phones/iphone-17-pro-max/titan-natur-front.svg",
+          "/phones/iphone-17-pro-max/titan-natur-back.svg",
+          "/phones/iphone-17-pro-max/titan-natur-side.svg",
+        ],
+      },
+      {
+        name: "Titan Blå", hex: "#4A6FA5",
+        imageUrl: "/phones/iphone-17-pro-max/titan-bla-front.svg",
+        gallery: [
+          "/phones/iphone-17-pro-max/titan-bla-front.svg",
+          "/phones/iphone-17-pro-max/titan-bla-back.svg",
+          "/phones/iphone-17-pro-max/titan-bla-side.svg",
+        ],
+      },
+      {
+        name: "Titan Svart", hex: "#2D2D2D",
+        imageUrl: "/phones/iphone-17-pro-max/titan-svart-front.svg",
+        gallery: [
+          "/phones/iphone-17-pro-max/titan-svart-front.svg",
+          "/phones/iphone-17-pro-max/titan-svart-back.svg",
+          "/phones/iphone-17-pro-max/titan-svart-side.svg",
+        ],
+      },
+      {
+        name: "Titan Vit", hex: "#F5F5F0",
+        imageUrl: "/phones/iphone-17-pro-max/titan-vit-front.svg",
+        gallery: [
+          "/phones/iphone-17-pro-max/titan-vit-front.svg",
+          "/phones/iphone-17-pro-max/titan-vit-back.svg",
+          "/phones/iphone-17-pro-max/titan-vit-side.svg",
+        ],
+      },
     ],
     variants: [
       variant("256 GB", 17988),
@@ -129,12 +196,44 @@ export const phones: Phone[] = [
     brand: "iPhone",
     status: "active",
     sortOrder: 3,
-    imageUrl: "/phones/iphone-17.svg",
+    imageUrl: "/phones/iphone-17/svart-front.svg",
     colours: [
-      { name: "Svart", hex: "#1C1C1E", imageUrl: "/phones/iphone-17.svg" },
-      { name: "Vit", hex: "#F5F5F0", imageUrl: "/phones/iphone-17.svg" },
-      { name: "Blå", hex: "#6EA4D4", imageUrl: "/phones/iphone-17.svg" },
-      { name: "Grön", hex: "#4D8B55", imageUrl: "/phones/iphone-17.svg" },
+      {
+        name: "Svart", hex: "#1C1C1E",
+        imageUrl: "/phones/iphone-17/svart-front.svg",
+        gallery: [
+          "/phones/iphone-17/svart-front.svg",
+          "/phones/iphone-17/svart-back.svg",
+          "/phones/iphone-17/svart-side.svg",
+        ],
+      },
+      {
+        name: "Vit", hex: "#F5F5F0",
+        imageUrl: "/phones/iphone-17/vit-front.svg",
+        gallery: [
+          "/phones/iphone-17/vit-front.svg",
+          "/phones/iphone-17/vit-back.svg",
+          "/phones/iphone-17/vit-side.svg",
+        ],
+      },
+      {
+        name: "Blå", hex: "#6EA4D4",
+        imageUrl: "/phones/iphone-17/bla-front.svg",
+        gallery: [
+          "/phones/iphone-17/bla-front.svg",
+          "/phones/iphone-17/bla-back.svg",
+          "/phones/iphone-17/bla-side.svg",
+        ],
+      },
+      {
+        name: "Grön", hex: "#4D8B55",
+        imageUrl: "/phones/iphone-17/gron-front.svg",
+        gallery: [
+          "/phones/iphone-17/gron-front.svg",
+          "/phones/iphone-17/gron-back.svg",
+          "/phones/iphone-17/gron-side.svg",
+        ],
+      },
     ],
     variants: [
       variant("128 GB", 10788),
@@ -157,11 +256,35 @@ export const phones: Phone[] = [
     brand: "Samsung",
     status: "active",
     sortOrder: 4,
-    imageUrl: "/phones/samsung-galaxy-s26-ultra.svg",
+    imageUrl: "/phones/samsung-galaxy-s26-ultra/titan-svart-front.svg",
     colours: [
-      { name: "Titan Svart", hex: "#2D2D2D", imageUrl: "/phones/samsung-galaxy-s26-ultra.svg" },
-      { name: "Titan Grå", hex: "#8A8D8F", imageUrl: "/phones/samsung-galaxy-s26-ultra.svg" },
-      { name: "Titan Blå", hex: "#3B5998", imageUrl: "/phones/samsung-galaxy-s26-ultra.svg" },
+      {
+        name: "Titan Svart", hex: "#2D2D2D",
+        imageUrl: "/phones/samsung-galaxy-s26-ultra/titan-svart-front.svg",
+        gallery: [
+          "/phones/samsung-galaxy-s26-ultra/titan-svart-front.svg",
+          "/phones/samsung-galaxy-s26-ultra/titan-svart-back.svg",
+          "/phones/samsung-galaxy-s26-ultra/titan-svart-side.svg",
+        ],
+      },
+      {
+        name: "Titan Grå", hex: "#8A8D8F",
+        imageUrl: "/phones/samsung-galaxy-s26-ultra/titan-gra-front.svg",
+        gallery: [
+          "/phones/samsung-galaxy-s26-ultra/titan-gra-front.svg",
+          "/phones/samsung-galaxy-s26-ultra/titan-gra-back.svg",
+          "/phones/samsung-galaxy-s26-ultra/titan-gra-side.svg",
+        ],
+      },
+      {
+        name: "Titan Blå", hex: "#3B5998",
+        imageUrl: "/phones/samsung-galaxy-s26-ultra/titan-bla-front.svg",
+        gallery: [
+          "/phones/samsung-galaxy-s26-ultra/titan-bla-front.svg",
+          "/phones/samsung-galaxy-s26-ultra/titan-bla-back.svg",
+          "/phones/samsung-galaxy-s26-ultra/titan-bla-side.svg",
+        ],
+      },
     ],
     variants: [
       variant("256 GB", 16188),
@@ -182,11 +305,35 @@ export const phones: Phone[] = [
     brand: "Samsung",
     status: "active",
     sortOrder: 5,
-    imageUrl: "/phones/samsung-galaxy-s26.svg",
+    imageUrl: "/phones/samsung-galaxy-s26/svart-front.svg",
     colours: [
-      { name: "Svart", hex: "#1C1C1E", imageUrl: "/phones/samsung-galaxy-s26.svg" },
-      { name: "Grön", hex: "#4A7C59", imageUrl: "/phones/samsung-galaxy-s26.svg" },
-      { name: "Lila", hex: "#7B6D8D", imageUrl: "/phones/samsung-galaxy-s26.svg" },
+      {
+        name: "Svart", hex: "#1C1C1E",
+        imageUrl: "/phones/samsung-galaxy-s26/svart-front.svg",
+        gallery: [
+          "/phones/samsung-galaxy-s26/svart-front.svg",
+          "/phones/samsung-galaxy-s26/svart-back.svg",
+          "/phones/samsung-galaxy-s26/svart-side.svg",
+        ],
+      },
+      {
+        name: "Grön", hex: "#4A7C59",
+        imageUrl: "/phones/samsung-galaxy-s26/gron-front.svg",
+        gallery: [
+          "/phones/samsung-galaxy-s26/gron-front.svg",
+          "/phones/samsung-galaxy-s26/gron-back.svg",
+          "/phones/samsung-galaxy-s26/gron-side.svg",
+        ],
+      },
+      {
+        name: "Lila", hex: "#7B6D8D",
+        imageUrl: "/phones/samsung-galaxy-s26/lila-front.svg",
+        gallery: [
+          "/phones/samsung-galaxy-s26/lila-front.svg",
+          "/phones/samsung-galaxy-s26/lila-back.svg",
+          "/phones/samsung-galaxy-s26/lila-side.svg",
+        ],
+      },
     ],
     variants: [
       variant("128 GB", 11988),
@@ -206,11 +353,35 @@ export const phones: Phone[] = [
     brand: "Samsung",
     status: "active",
     sortOrder: 6,
-    imageUrl: "/phones/samsung-galaxy-s26-plus.svg",
+    imageUrl: "/phones/samsung-galaxy-s26-plus/svart-front.svg",
     colours: [
-      { name: "Svart", hex: "#1C1C1E", imageUrl: "/phones/samsung-galaxy-s26-plus.svg" },
-      { name: "Silver", hex: "#C0C0C0", imageUrl: "/phones/samsung-galaxy-s26-plus.svg" },
-      { name: "Blå", hex: "#4A6FA5", imageUrl: "/phones/samsung-galaxy-s26-plus.svg" },
+      {
+        name: "Svart", hex: "#1C1C1E",
+        imageUrl: "/phones/samsung-galaxy-s26-plus/svart-front.svg",
+        gallery: [
+          "/phones/samsung-galaxy-s26-plus/svart-front.svg",
+          "/phones/samsung-galaxy-s26-plus/svart-back.svg",
+          "/phones/samsung-galaxy-s26-plus/svart-side.svg",
+        ],
+      },
+      {
+        name: "Silver", hex: "#C0C0C0",
+        imageUrl: "/phones/samsung-galaxy-s26-plus/silver-front.svg",
+        gallery: [
+          "/phones/samsung-galaxy-s26-plus/silver-front.svg",
+          "/phones/samsung-galaxy-s26-plus/silver-back.svg",
+          "/phones/samsung-galaxy-s26-plus/silver-side.svg",
+        ],
+      },
+      {
+        name: "Blå", hex: "#4A6FA5",
+        imageUrl: "/phones/samsung-galaxy-s26-plus/bla-front.svg",
+        gallery: [
+          "/phones/samsung-galaxy-s26-plus/bla-front.svg",
+          "/phones/samsung-galaxy-s26-plus/bla-back.svg",
+          "/phones/samsung-galaxy-s26-plus/bla-side.svg",
+        ],
+      },
     ],
     variants: [
       variant("256 GB", 13788),

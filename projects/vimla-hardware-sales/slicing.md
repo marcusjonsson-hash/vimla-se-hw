@@ -2,7 +2,7 @@
 
 > **State:** Build
 > **Last updated:** 2026-04-08
-> **Status:** 🟡 In Progress — Drop 1 active
+> **Status:** 🟡 In Progress — Drop 3 complete, Drop 4 next
 
 ---
 
@@ -141,19 +141,19 @@ The project is sliced into **6 drops**, each delivering a **tiny, isolated, test
 
 ### Acceptance Criteria — Drop 3
 
-- [ ] Clicking "Välj denna telefon →" on detail page navigates to `/phones/<slug>/checkout` with colour + storage preserved
-- [ ] Checkout shows 4-step progress bar, phone summary (Step 1) with "Ändra" link that returns to detail page
-- [ ] Plan selection (Step 2) shows radio buttons for ≥ 3 plans; selecting a plan updates order summary within 500 ms
-- [ ] Personal details form (Step 3) validates all 5 fields; inline errors on invalid input
-- [ ] Personnummer for person under 18 shows age-gate error (BR-202)
-- [ ] Submit button is disabled until all fields valid + both consents checked
-- [ ] On submit: spinner shown, button disabled, "Vi kontrollerar dina uppgifter…" displayed
-- [ ] Stubbed approved flow: shows ✅ screen, "Bekräfta beställning →" places order, redirects to confirmation page
-- [ ] Confirmation page shows order number, full cost breakdown, delivery estimate
-- [ ] Stubbed declined flow: trigger with test personnummer, shows ❌ empathetic message
-- [ ] Stubbed error flow: trigger with test personnummer, shows error message + retry button
-- [ ] Order summary panel visible throughout checkout; total = instalment + subscription (BR-104)
-- [ ] Out-of-stock check: if phone marked unavailable during checkout, shows stock message
+- [x] Clicking "Välj denna telefon →" on detail page navigates to `/phones/<slug>/checkout` with colour + storage preserved
+- [x] Checkout shows 4-step progress bar, phone summary (Step 1) with "Ändra" link that returns to detail page
+- [x] Plan selection (Step 2) shows radio buttons for ≥ 3 plans; selecting a plan updates order summary within 500 ms
+- [x] Personal details form (Step 3) validates all 5 fields; inline errors on invalid input
+- [x] Personnummer for person under 18 shows age-gate error (BR-202)
+- [x] Submit button is disabled until all fields valid + both consents checked
+- [x] On submit: spinner shown, button disabled, "Vi kontrollerar dina uppgifter…" displayed
+- [x] Stubbed approved flow: shows ✅ screen, "Bekräfta beställning →" places order, redirects to confirmation page
+- [x] Confirmation page shows order number, full cost breakdown, delivery estimate
+- [x] Stubbed declined flow: trigger with test personnummer, shows ❌ empathetic message
+- [x] Stubbed error flow: trigger with test personnummer, shows error message + retry button
+- [x] Order summary panel visible throughout checkout; total = instalment + subscription (BR-104)
+- [x] Out-of-stock check: if phone marked unavailable during checkout, shows stock message
 
 ---
 

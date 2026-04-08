@@ -23,3 +23,13 @@ export function calculateInstalment(retailPrice: number): number {
 export function calculateTotalCost(instalmentPrice: number): number {
   return instalmentPrice * INSTALMENT_MONTHS;
 }
+
+/**
+ * Calculate combined monthly cost for device + subscription (BR-104).
+ */
+export function calculateCombinedMonthly(
+  instalmentPrice: number,
+  subscriptionPrice: number
+): number {
+  return instalmentPrice + subscriptionPrice;
+}
